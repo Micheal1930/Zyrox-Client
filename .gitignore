@@ -1,0 +1,8 @@
+/bin/
+/.idea/
+*.iml
+*.png
+*.gif
+*.class
+*.classpath
+*.project
