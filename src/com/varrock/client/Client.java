@@ -12400,10 +12400,9 @@ public class Client extends RSApplet {
         }
     }
 
-	private void setSkillSprites() {
+    private void setSkillSprites() {
 		for (int i = 0; i < Skills.SKILL_COUNT; i++) {
 			Sprite sprite = cacheSprite[41 + i];
-
 			if(41 + i == 65) {
                 sprite = cacheSprite[1166];
             }
@@ -12415,6 +12414,10 @@ public class Client extends RSApplet {
 			if(41 + i == 62) {
                 sprite = cacheSprite[63];
             }
+			
+			if (i == 21) {
+				sprite = cacheSprite[62];
+			}
 
 			bigSkillSprites[i] = sprite;
 			smallSkillSprites[i] = new Sprite(sprite, (int) (sprite.myWidth * 0.66), (int) (sprite.myHeight * 0.66), Image.SCALE_AREA_AVERAGING);

@@ -33,10 +33,6 @@ public class XpDrops {
         if (xp <= 0)
             return;
 
-        if (skill == 22) {
-            skill = 21;
-        }
-
         TOTAL_XP += xp;
 
         int nextY = getNextCurrentY();
