@@ -10122,16 +10122,20 @@ public class RSInterface {
         RSInterface equip = addTabInterface(66000);
         addChar5(66002);
         addSpriteLoader(66001, 1512);
-        RSInterface.addText(66003, "Equipment & Stats", tda, 2, 0xff981f, true);
+        RSInterface.addText(66003, "Character View", tda, 2, 0xff981f, true);
         RSInterface.addText(66004, "Username", tda, 2, 0xff981f, false);
         RSInterface.addText(66005, "Title", tda, 1, 0xff981f, false);
+        RSInterface.addText(66006, "Cb Level", tda, 0, 0xff981f, false);
+        RSInterface.addText(66007, "Total Level", tda, 0, 0xff981f, false);
 
-        equip.children(5);
+        equip.children(7);
         equip.child(0,66001, 0, 0);
-        equip.child(1,66002,322,141);
+        equip.child(1,66002,305,180);
         equip.child(2,66003, 380, 10);
         equip.child(3,66004, 92, 79);
         equip.child(4,66005, 92, 105);
+        equip.child(5,66006, 39, 138);
+        equip.child(6,66007, 160, 138);
     }
 
     public static void prayerTab() {
