@@ -99,7 +99,6 @@ public class CustomItems {
                 itemDef.description = "A box that is full of mysterious items!";
                 itemDef.stackable = false;
                 return itemDef;
-
             case 11848:
                 itemDef.copy(ItemDefinition.forID(30_000 + 12877));
                 itemDef.actions = new String[5];
