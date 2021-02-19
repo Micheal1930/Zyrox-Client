@@ -108,7 +108,7 @@ WindowListener {
 			if(Client.instance instanceof Jframe) {
 				Jframe frame = (Jframe) Client.instance;
 				frame.rebuildFrame(width, height, resizable, undecorated);
-				frame.setClientIcon();
+				//frame.setClientIcon();
 			} else {
 				mainFrame = new RSFrame(this, width, height, undecorated, resizable);
 				mainFrame.addWindowListener(this);

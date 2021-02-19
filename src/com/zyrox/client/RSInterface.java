@@ -52,6 +52,179 @@ public class RSInterface {
         RSInterface.interfaceCache[51891] = original;
     }
     
+    private static void teleportInterface() {
+    	int lines = 20;
+    	RSInterface tab = addInterface(55500);
+    	RSInterface scroll = addTabInterface(55039);
+    	addSpriteLoader(55501, 1516);
+    	addText(55502, "Teleport Menu", fonts, 2, 0xff981f, true, true);
+    	addText(55503, "Favourite", fonts, 2, 0xff981f, true, true);
+    	addHoverButtonWSpriteLoader(55504, 1522, 75, 25, "Teleport", -1, 55505, 1);
+        addHoveredImageWSpriteLoader(55505, 1521, 75, 25, 55506);
+        addHoverButtonWSpriteLoader(55507, 1522, 75, 25, "Previous", -1, 55508, 1);
+        addHoveredImageWSpriteLoader(55508, 1521, 75, 25, 55509);
+        addText(55510, "Teleport", fonts, 0, 0xff981f, true, true);
+        addText(55511, "Previous", fonts, 0, 0xff981f, true, true);
+        addText(55512, "Teleports", fonts, 2, 0xff981f, true, true);
+        
+        RSInterface items = addInterface(55606);
+	    items.totalChildren(1);
+	    items.width = 150;
+	    items.height = 64;
+	    items.scrollMax = 150;
+	    addContainer(55607, 4, 4, 4, 4, false, new String[] { null, null, null, null, null });
+	    items.child(0, 55607, 5, 3);
+	    
+	    addNpc(55608);
+	    
+	    new DropDownMenu(55609, 146, 0x483E33, 0xFFA500, 1, 91,
+            new DropDownAction[] {
+                new DropDownAction(0, "<col=d0c702>Beginner Mobs"),
+                new DropDownAction(1, "<col=d0c702>Mid-Level Mobs"),
+                new DropDownAction(2, "<col=d0c702>Bosses"),
+                new DropDownAction(3, "<col=d0c702>Minigames"),
+                new DropDownAction(4, "<col=d0c702>Misc")
+            }
+	    );
+	    
+	    addCloseButton(55610, 55611, 55612);
+	    addButton(55613, -1, "", 165, 108, "Description", 5);
+        
+        tab.totalChildren(11 + (30) + 6);
+    	tab.child(0, 55501, 18, 30);
+    	tab.child(1, 55502, 270, 40);
+    	tab.child(2, 55503, 424, 71);
+    	tab.child(3, 55504, 187, 258);
+    	tab.child(4, 55505, 187, 258);
+    	tab.child(5, 55507, 268, 258);
+    	tab.child(6, 55508, 268, 258);
+    	tab.child(7, 55510, 222, 265);
+    	tab.child(8, 55511, 306, 265);
+    	tab.child(9, 55512, 103, 93);
+    	tab.child(10, 55515, 0, 110);
+    	tab.child(41, 55606, 182, 182);
+    	tab.child(42, 55608, 199, 56);
+    	tab.child(43, 55609, 30, 70);
+    	tab.child(44, 55610, 472, 40);
+    	tab.child(45, 55611, 472, 40);
+    	tab.child(46, 55613, 182, 63);
+    	
+    	RSInterface monsterScroll = addInterface(55515);
+    	monsterScroll.width = 160;
+    	monsterScroll.height = 178;
+    	monsterScroll.scrollMax = 402;
+    	monsterScroll.children(lines * 3);
+    	
+    	for (int i = 0; i < lines; i++) {
+    		addSpriteLoader(55516 + i, (i % 2 == 0 ? 1519 : 1517));
+			monsterScroll.child(i, 55516 + i, 31, 1 + (i * 20));
+			
+			addClickableText(55516 + i + lines, "", "Select", fonts, 0, 0xff981f, false, true, 150);
+			monsterScroll.child(i + lines, 55516 + i + lines, 35, 5 + (i * 20));
+			
+			addConfigButtonWSpriteLoader(55516 + i + (lines * 2), 55516 + i + (lines * 2), 1524, 1523, 71, 75, "Select", 0, 5, 1200 + i); //id
+			monsterScroll.child(i + (lines * 2), 55516 + i + (lines * 2), 142, 1 + (i * 20));
+		}
+    	
+    	int index = 55516 + (lines * 3);
+    	for (int i = 0; i < 10; i++) {
+    		addSpriteLoader(index, (i % 2 == 0 ? 1518 : 1520));
+			tab.child(11 + i, index, 355, 88 + (i * 20));
+			index++;
+			
+			addClickableText(index, "", "Select", fonts, 0, 0xff981f, false, true, 150);
+			tab.child(21 + i, index, 359, 93 + (i * 20));
+			index++;
+			
+			addButtonWSpriteLoader(index, 1526, "Remove", 8, 9);
+			tab.child(31 + i, index, 472, 92 + (i * 20));
+			index++;
+		}
+    }
+    
+    static RSInterface addContainer(int id, int width, int height, int xPad, int yPad, boolean move, String... actions) {
+		RSInterface container = addTabInterface(id);
+		container.parentID = id;
+		container.type = 2;
+		container.width = width;
+		container.height = height;
+		container.sprites = new Sprite[20];
+		container.spritesX = new int[20];
+		container.spritesY = new int[20];
+		container.invSpritePadX = xPad;
+		container.invSpritePadY = yPad;
+		container.inv = new int[width * height];
+		container.invStackSizes = new int[width * height];
+		container.actions = actions;
+		container.deleteOnDrag2 = move;
+		return container;
+	}
+    
+    private static void questTab() {
+		RSInterface tab = addInterface(55000);
+		addSpriteLoader(55001, 1513);
+		addButton(55018, -1, "", 43, 37, "Tab 1", 5);
+		addButton(55019, -1, "", 43, 37, "Tab 1", 5);
+		tab.totalChildren(16);
+		tab.child(0, 55001, 0, 0);
+		tab.child(14, 55018, 50, 14);
+		tab.child(15, 55019, 93, 14);
+
+		for (int i = 1; i < 6; i++) {
+			addClickableText(55002 + i, "Button " + i, "Select", fonts, 0, 0xff0000, false, true, 150);
+			tab.child(i, 55002 + i, 25, 63 + (15 * i));
+		}
+		
+		int k = 180;
+		for (int i = 6; i < 14; i++) {
+			addClickableText(55002 + i, "Button " + i, "Select", fonts, 0, 0xff0000, false, true, 150);
+			tab.child(i, 55002 + i, (i % 2 != 0 ? 120 : 25), k);
+			if(i % 2 != 0)
+				k += 14;
+		}
+	}
+	
+	private static void questTab2() {
+		RSInterface tab = addInterface(55020);
+		addSpriteLoader(55021, 1514);
+		addButton(55030, -1, "", 43, 37, "Tab 1", 5);
+		addButton(55031, -1, "", 43, 37, "Tab 1", 5);
+		tab.totalChildren(9);
+		tab.child(0, 55021, 0, 0);
+		tab.child(7, 55030, 7, 14);
+		tab.child(8, 55031, 93, 14);
+
+		for (int i = 1; i < 7; i++) {
+			addClickableText(55022 + i, "Button " + i, "Select", fonts, 0, 0xff0000, false, true, 150);
+			tab.child(i, 55022 + i, 25, 63 + (15 * i));
+		}
+	}
+	
+	private static void questTab3() {
+		RSInterface tab = addInterface(55040);
+		RSInterface scroll = addTabInterface(55039);
+		addText(55038, "Useful Tabs", fonts, 2, 0xff981f, true, true);
+		addSpriteLoader(55041, 1515);
+		addButton(55037, -1, "", 43, 37, "Tab 1", 5);
+		addButton(55036, -1, "", 43, 37, "Tab 1", 5);
+
+		scroll.totalChildren(25);
+		scroll.width = 174;
+		scroll.height = 199;
+		scroll.scrollMax = 415;
+		tab.totalChildren(5);
+		tab.child(0, 55041, 0, 0);
+		tab.child(1, 55039, -10, 50);
+		tab.child(2, 55038, 93, 57);
+		tab.child(3, 55037, 7, 14);
+		tab.child(4, 55036, 50, 14);
+
+		for (int i = 0; i < 25; i++) {
+			addClickableText(55042 + i, "Button " + (i + 1), "Select", fonts, 0, 0xff0000, false, true, 150);
+			scroll.child(i, 55042 + i, 45, 33 + (15 * i));
+		}
+	}
+    
 	public static void dailyReward(TextDrawingArea[] ryan) {
     	int interfaceId = 73000;
     	int boxId = 73015;
@@ -4966,7 +5139,7 @@ public class RSInterface {
         fornitureChooser(textDrawingAreas);
         constructionWaiting();
         editClan(textDrawingAreas);
-        questTabInterfaceNew();
+        //questTabInterfaceNew();
         newStarter(textDrawingAreas);
         Starter(textDrawingAreas);
         starterSelect(textDrawingAreas);
@@ -4994,8 +5167,8 @@ public class RSInterface {
         skillTabInterface2();
         // statistics(textDrawingAreas);
         optionsInterface();
-        questTabInterface();
-        questTabInterface2();
+        //questTabInterface();
+        //questTabInterface2();
         friendsTabInterface(textDrawingAreas);
         ignoreTabInterface(textDrawingAreas);
         EquipmentTab(textDrawingAreas);
@@ -5029,6 +5202,10 @@ public class RSInterface {
         npcTracker(textDrawingAreas);
         bossTracker(textDrawingAreas);
         dailyReward(textDrawingAreas);
+        questTab();
+        questTab2();
+        questTab3();
+        teleportInterface();
         dropSim(textDrawingAreas);
         dropLog(textDrawingAreas);
         rareLog(textDrawingAreas);
@@ -9586,6 +9763,27 @@ public class RSInterface {
         t.type = 6;
         t.atActionType = 0;
         t.contentType = 329;
+        t.width = 136;
+        t.height = 168;
+        t.opacity = 0;
+        t.modelZoom = 1500;
+        t.modelRotation1 = 150;
+        t.modelRotation2 = 0;
+        t.disabledAnimationId = -1;
+        t.enabledAnimationId = -1;
+        t.inv = new int[1];
+        t.invStackSizes = new int[1];
+    }
+    
+    public static void addNpc(int ID, int npcID) {
+        RSInterface t = interfaceCache[ID] = new RSInterface();
+        t.id = ID;
+        t.parentID = ID;
+        t.type = 6;
+        t.atActionType = 0;
+        t.contentType = 329;
+        t.mediaType = 2;
+        t.mediaID = npcID;
         t.width = 136;
         t.height = 168;
         t.opacity = 0;

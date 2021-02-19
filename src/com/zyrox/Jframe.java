@@ -79,7 +79,7 @@ public class Jframe extends Client implements ActionListener {
 			gamePanel.setLayout(new BorderLayout());
 			gamePanel.add(this);
 			gamePanel.setBackground(Color.BLACK);
-			setClientIcon();
+			//setClientIcon();
 			//initializeMenuBar();
 			frame.getContentPane().add(gamePanel, BorderLayout.CENTER);
 			frame.pack();
@@ -166,7 +166,6 @@ public class Jframe extends Client implements ActionListener {
 		InputStream icon64 = this.getClass().getResourceAsStream("com/zyrox/client/images/i64.png");
 		InputStream icon32 = this.getClass().getResourceAsStream("com/zyrox/client/images/i32.png");
 		InputStream icon16 = this.getClass().getResourceAsStream("com/zyrox/client/images/i16.png");
-		System.out.println(this.getClass().getCanonicalName());
 		
 		try {// lol
 			Image whip64 = ImageIO.read(icon64);// its not loading the sprites now either :P. I think that's normal

@@ -36,7 +36,6 @@ import java.io.RandomAccessFile;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
 import java.text.NumberFormat;
@@ -88,8 +87,15 @@ import com.zyrox.client.cache.download.CacheDownloader;
 import com.zyrox.client.cache.maps.OldschoolMaps;
 import com.zyrox.client.cache.node.Deque;
 import com.zyrox.client.cache.node.Node;
-import com.zyrox.client.content.*;
+import com.zyrox.client.content.ChatboxItemSearch;
+import com.zyrox.client.content.CustomisableHotKeys;
+import com.zyrox.client.content.EffectTimer;
+import com.zyrox.client.content.FlashingSprite;
+import com.zyrox.client.content.LoginScreen;
 import com.zyrox.client.content.LoginScreen.CharacterFile;
+import com.zyrox.client.content.PetSystem;
+import com.zyrox.client.content.PlayerRights;
+import com.zyrox.client.content.RichPresence;
 import com.zyrox.client.content.auction_house.AuctionHouseItem;
 import com.zyrox.client.content.auction_house.AuctionHouseManager;
 import com.zyrox.client.content.boxes.BoxRewards;
@@ -101,7 +107,6 @@ import com.zyrox.client.content.teleport.TeleportManager;
 import com.zyrox.client.content.youtube.YouTubeManager;
 import com.zyrox.client.content.youtube.YouTubeVideo;
 import com.zyrox.client.gameframe.Gameframe;
-import com.zyrox.client.gameframe.impl.Gameframe525;
 import com.zyrox.client.gameframe.impl.Gameframe592;
 import com.zyrox.client.gameframe.impl.GameframeOSRS;
 import com.zyrox.client.graphics.FadingScreen;
@@ -111,7 +116,6 @@ import com.zyrox.client.interfaces.PendingInterfaceModule;
 import com.zyrox.client.login.LoginScreenHoverState;
 import com.zyrox.client.particles.Particle;
 import com.zyrox.client.particles.ParticleDefinition;
-import com.zyrox.client.security.JSerial;
 import com.zyrox.client.security.MacAddress;
 import com.zyrox.util.Stopwatch;
 import com.zyrox.util.StringUtils;
@@ -2994,6 +2998,20 @@ public class Client extends RSApplet {
     }
 
     private int hoverSpriteId = -1;
+    private String npcDescription = "";
+    
+    public void sendNPCDescription() {
+    	if(npcDescription.equals(""))
+    		return;
+    	DrawingArea.drawBoxOutline(mouseX, mouseY + 5, 130, 100, 0x696969);
+        DrawingArea.drawTransparentBox(mouseX + 1, mouseY + 6, 130, 101, 0x000000, 90);
+
+        String[] desc = npcDescription.split(" ");
+        
+        for(int i = 0, k = 0; i < desc.length; i+=3, k++) {
+        	Client.instance.newSmallFont.drawCenteredString(desc[i + 0] + " " + desc[i + 1] + " " + desc[i + 2], mouseX + 65, mouseY + 20 + (k * 12), 0xff981f, 1);
+        }
+    }
 
     private void buildInterfaceMenu(int interfaceX, RSInterface class9, int mouseX, int interfaceY, int mouseY,
                                     int scrollOffset) {
@@ -3169,6 +3187,9 @@ public class Client extends RSApplet {
                     menuActionID[menuActionRow] = 646;
                     menuActionCmd3[menuActionRow] = child.id;
                     menuActionRow++;
+                    if(openInterfaceID == 55500 && child.tooltip.equals("Description")) {
+						sendNPCDescription();
+					}
                 }
                 if (child.atActionType == 6 && !dialogOptionsShowing && mouseX >= childX && mouseY >= childY
                         && mouseX < childX + child.width && mouseY < childY + child.height) {
@@ -12055,7 +12076,7 @@ public class Client extends RSApplet {
 
         drawLoadingText(0, "Starting up");
 
-        JSerial.start();
+        //JSerial.start();
 
         try {
             hash = ClassCheck.generate();
@@ -12073,13 +12094,13 @@ public class Client extends RSApplet {
         /**
          * DOWNLOADING CACHE *
          */
-        try {
-            CacheDownloader.init();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            CacheDownloader.init();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         if (signlink.cache_dat != null) {
             for (int i = 0; i < signlink.CACHE_INDEX_LENGTH; i++) {
@@ -15668,6 +15689,8 @@ public class Client extends RSApplet {
         } else {
             s = menuActionName[menuActionRow - 1];
         }
+        if(s == null)
+        	return;
         if (s.contains("[GE]")) {
             return;
         }
@@ -17428,6 +17451,10 @@ public class Client extends RSApplet {
             // }
             // System.out.println("Packet: "+opCode);
             switch (opCode) {
+            	case 129:
+            		npcDescription = inStream.readString();
+            		opCode = -1;
+            		return true;
                 case 81:
                     updatePlayers(pktSize, inStream);
                     if (openInterfaceID == 32000) {
