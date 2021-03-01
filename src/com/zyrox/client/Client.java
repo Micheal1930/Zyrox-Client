@@ -12312,7 +12312,7 @@ public class Client extends RSApplet {
             SpotAnimDefinition.unpackConfig(configArchive);
             Varp.unpackConfig(configArchive);
             VarBit.unpackConfig(configArchive);
-            //repackCacheIndex(1);
+            //repackCacheIndex(4, "index4");
             Censor.loadConfig(streamLoader_4);
             setLoadingText(85, "Loading sounds..");
             byte abyte0[] = soundArchive.getDataForName("sounds.dat");

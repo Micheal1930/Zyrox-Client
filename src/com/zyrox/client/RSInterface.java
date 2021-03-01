@@ -89,8 +89,10 @@ public class RSInterface {
 	    
 	    addCloseButton(55610, 55611, 55612);
 	    addButton(55613, -1, "", 165, 108, "Description", 5);
+	    addConfigButtonWSpriteLoader(55614, 55614, 938, 937, 14, 15, "Toggle Instance", 0, 5, 1250); //id
+	    addText(55615, "Instance", fonts, 1, 0xff981f, true, true);
         
-        tab.totalChildren(11 + (30) + 6);
+        tab.totalChildren(11 + (30) + 8);
     	tab.child(0, 55501, 18, 30);
     	tab.child(1, 55502, 270, 40);
     	tab.child(2, 55503, 424, 71);
@@ -108,6 +110,8 @@ public class RSInterface {
     	tab.child(44, 55610, 472, 40);
     	tab.child(45, 55611, 472, 40);
     	tab.child(46, 55613, 182, 63);
+    	tab.child(47, 55614, 90, 39);
+    	tab.child(48, 55615, 60, 39);
     	
     	RSInterface monsterScroll = addInterface(55515);
     	monsterScroll.width = 160;

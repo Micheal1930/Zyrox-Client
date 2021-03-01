@@ -799,6 +799,16 @@ public final class ItemDefinition {
         	itemDef.maleEquip1 = 4851;
         	itemDef.femaleEquip1 = 4851;
         	return itemDef;
+        case 20023:
+        	itemDef.maleEquip1 = 70000;
+        	itemDef.femaleEquip1 = 70000;
+        	itemDef.modelID = 70000;
+        	itemDef.rotationX = 408;
+        	itemDef.rotationY = 224;
+        	itemDef.modelOffsetX = 2;
+        	itemDef.modelOffsetY = 2;
+        	itemDef.modelZoom = 1530;
+        	return itemDef;
         case 4068: // Dec sword
         	itemDef.maleEquip1 = 522;
         	itemDef.femaleEquip1 = 522;
