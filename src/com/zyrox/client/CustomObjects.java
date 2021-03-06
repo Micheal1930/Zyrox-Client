@@ -612,7 +612,6 @@ public class CustomObjects {
             {4483, 2909, 4832, 0, 3},
             {4483, 2901, 5201, 0, 2},
             {4483, 2902, 5201, 0, 2},
-
             {1662, 3112, 9677, 0, 2},
             {1661, 3114, 9677, 0, 2},
             {1661, 3122, 9664, 0, 1},
@@ -819,7 +818,8 @@ public class CustomObjects {
             {1817, 3091, 3487, 0, 1, 4}, // Edge lever
             {1306, 3092, 3463, 0, 0}, // Magic tree
 
-// New Home Objects [ Micheal ]
+
+  // New Home Objects [ Micheal ]
             {24161, 2546, 2594, 1, 0}, // fountain
             {10780, 2557, 2544, 1, 4}, // Karuulum Dungeon
             {409, 2551, 2544, 1, 4}, // regular Prayer altar
@@ -838,6 +838,7 @@ public class CustomObjects {
             {4876, 2554, 2575, 1, 0},
             {4877, 2553, 2575, 1, 0},
             {4878, 2552, 2575, 1, 0},
+
     };
 
     public static List<GameObject> CUSTOM_OBJECT_LIST = new ArrayList<GameObject>();
