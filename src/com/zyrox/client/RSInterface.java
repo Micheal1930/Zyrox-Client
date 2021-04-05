@@ -4878,8 +4878,10 @@ public class RSInterface {
 	public static void questInterface(TextDrawingArea[] TDA) {
 		RSInterface Interface = addInterface(8134);
 		Interface.centerText = true;
-		addSprite(8135, 1527, "QuestTab/QUESTBG"); //spiritid 0 [ Check ]
-		addSprite(8136, 1530, "QuestTab/QUESTBG"); // spirit id 1 [ Check ]
+		addSpriteLoader(8135, 1527);
+		addSpriteLoader(8136, 1527);
+		//addSprite(8135, 1527, "QuestTab/QUESTBG"); //spiritid 0 [ Check ]
+		//addSprite(8136, 1530, "QuestTab/QUESTBG"); // spirit id 1 [ Check ]
 		addText(8144, "Quest Name", 0x000000, true, false, 52, TDA, 3);// 249 18
 		addHover(8137, 3, 0, 8138, 0, "QuestTab/CLOSE", 26, 23, "Close");
 		addHovered(8138, 1, "QuestTab/CLOSE", 26, 23, 8139);
